@@ -4,7 +4,7 @@
 
 #include "yfinance.h"
 
-void YahooFinanceApiHelper::parseConfigFile(std::string yFinanceConfigFilePath, YAML::Node &configs)
+void YahooFinanceApiHelper::parseConfigFile(std::string yFinanceConfigFilePath)
 {
     configs = YAML::LoadFile(yFinanceConfigFilePath);
 }
@@ -15,25 +15,35 @@ void YahooFinanceApiHelper::showConfigs()
     std::cout << configs;
 }
 
-std::string YahooFinanceApiHelper::generateFundementalDataUrl(std::string ticker)
+std::string YahooFinanceApiHelper::getFundamentalDataUrl(std::string ticker)
 {
-    std::ostream urlSstream;
-    for(auto&& param : configs)
-    {
-        if(param.second == true)
+    return generateFundamentalDataUrl(ticker);
+}
 
+std::string YahooFinanceApiHelper::generateFundamentalDataUrl(std::string ticker)
+{
+    std::stringstream urlStream;
+
+    urlStream << configs["data_type"]["fundamental"][0].as<std::string>()
+              << ticker
+              << configs["data_type"]["fundamental"][1].as<std::string>();
+
+
+    for(auto&& field : configs["fundamental_data_field"])
+    {
+        if(field.second.as<bool>() == true)
+        {
+            urlStream << field.first.as<std::string>()
+                      << "%2c";
+        }
     }
+    return urlStream.str();
+
 }
 
 std::string YahooFinanceApiHelper::generateHistoricalPriceDataUrl(std::string ticker)
 {
-}
-
-std::string YahooFinanceApiHelper::generateUrl()
-{
-    std::string output;
-
-    return output;
+    return ticker;
 }
 
 YahooFinanceApi::YahooFinanceApi():
@@ -41,7 +51,15 @@ YahooFinanceApi::YahooFinanceApi():
 {
 }
 
-void YahooFinanceApi::getTickerInfo(std::string ticker)
+void YahooFinanceApi::getFundamentalData(std::string ticker)
 {
+    std::string url = getFundamentalDataUrl(ticker);
+    std::cout << url << std::endl;
+    downloader->setUrl(url);
+    downloader->fetch();
+    auto data = json::parse(downloader->getFetchedData()).dump(4);
+    std::cout << data;
 
 }
+
+

@@ -25,8 +25,12 @@ int main()
 //        std::cout << field.first << std::endl;
 //    }
 
-    YahooFinanceApi y;
-    y.setConfigFile("C:\\Users\\rangw\\Documents\\stock-market-analyzer\\resource\\yfinance\\cfg.yaml");
-    y.showConfigs();
+//    YahooFinanceApiHelper y;
+//    y.parseConfigFile("/home/russell/Documents/stock-market-tool/resource/yfinance/cfg.yaml");
+//    std::cout << y.generateFundamentalDataUrl("AAPL");
+
+    YahooFinanceApi y2;
+    y2.parseConfigFile("/home/russell/Documents/stock-market-tool/resource/yfinance/cfg.yaml");
+    y2.getFundamentalData("TSLA");
     return 0;
 }
