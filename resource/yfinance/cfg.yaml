@@ -1,0 +1,42 @@
+data_type:
+   fundemental:
+   - "https://query2.finance.yahoo.com/v10/finance/quoteSummary/"
+   - "?modules="
+   price:
+   - "https://query1.finance.yahoo.com/v8/finance/chart/"
+   - "?symbol="
+fundemental_data_field:
+   assetProfile: true
+   summaryProfile: true
+   summaryDetail: true
+   esgScores: true
+   price: true
+   incomeStatementHistory: true
+   incomeStatementHistoryQuarterly: true
+   balanceSheetHistory: true
+   balanceSheetHistoryQuarterly: true
+   cashflowStatementHistory: true
+   cashflowStatementHistoryQuarterly: true
+   defaultKeyStatistics: true
+   financialData: true
+   calendarEvents: true
+   secFilings: true
+   recommendationTrend: true
+   upgradeDowngradeHistory: true
+   institutionOwnership: true
+   fundOwnership: true
+   majorDirectHolders: true
+   majorHoldersBreakdown: true
+   insiderTransactions: true
+   insiderHolders: true
+   netSharePurchaseActivity: true
+   earnings: true
+   earningsHistory: true
+   earningsTrend: true
+   industryTrend: true
+   indexTrend: true
+   sectorTrend: true
+price_data_fields:
+   period1: "&period1="
+   period2: "&period2="
+   interval: "&interval="

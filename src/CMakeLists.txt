@@ -1,0 +1,3 @@
+add_subdirectory(modules/downloader)
+add_subdirectory(modules/eodddataapi)
+add_subdirectory(modules/yfinance)
