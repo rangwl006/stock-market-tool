@@ -1,0 +1,5 @@
+add_executable(MovingAverageTestFile MovingAverageTest.cpp)
+target_link_libraries(MovingAverageTestFile PUBLIC statistics Catch2::Catch2WithMain)
+target_include_directories(MovingAverageTestFile PUBLIC ${CMAKE_SOURCE_DIR}/inc)
+install(TARGETS MovingAverageTestFile)
+#         DESTINATION "${CMAKE_INSTALL_PREFIX}/test")
